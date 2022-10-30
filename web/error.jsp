@@ -6,7 +6,7 @@
 <body>
 <center>
     <h1>操作失败！</h1><br>
-    <a href="main.jsp">返回主界面</a>
+    <a href="umain.jsp">返回主界面</a>
 </center>
 </body>
 </html>

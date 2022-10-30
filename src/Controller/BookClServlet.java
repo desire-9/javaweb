@@ -1,8 +1,7 @@
 package Controller;
 
 import UserBean.UserBean;
-import UserBean.UserBeanCl;
-
+import UserBean.BookBeanCl;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "UserClServlet",urlPatterns = "/UserClServlet")
-public class UserClServlet extends HttpServlet {
+@WebServlet(name = "BookClServlet",urlPatterns = "/BookClServlet")
+public class BookClServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         // 获得标识符
         String flag = request.getParameter("flag");
         // 调用UserBeanCl的方法
-        UserBeanCl userbeancl = new UserBeanCl();
+        BookBeanCl userbeancl = new BookBeanCl();
 
         if (flag.equals("paging")) {
             // 得到用户希望显示的pageNow
@@ -34,7 +34,7 @@ public class UserClServlet extends HttpServlet {
                 request.setAttribute("pageNow", pageNow);
 
                 // 重新跳转回welcome.jsp
-                request.getRequestDispatcher("welcome.jsp").forward(request,
+                request.getRequestDispatcher("bwelcome.jsp").forward(request,
                         response);
 
             } catch (Exception e) {
@@ -47,7 +47,7 @@ public class UserClServlet extends HttpServlet {
             String user_id = request.getParameter("user_id");
             if (userbeancl.deleteUser(user_id)) {
                 // 删除成功
-                request.getRequestDispatcher("success.jsp").forward(request,
+                request.getRequestDispatcher("bsuccess.jsp").forward(request,
                         response);
             } else {
                 // 删除失败
@@ -58,13 +58,13 @@ public class UserClServlet extends HttpServlet {
         }
         // 添加用户
         else if (flag.equals("addUser")) {
-
+            String id = request.getParameter("id");
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
             if(userbeancl.addUser(username, password)){
                 //添加成功
-                request.getRequestDispatcher("success.jsp").forward(request, response);
+                request.getRequestDispatcher("bsuccess.jsp").forward(request, response);
             }else{
                 //添加失败
                 request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -79,7 +79,7 @@ public class UserClServlet extends HttpServlet {
 
             if(userbeancl.updateUser(username, password,id)){
                 //修改成功
-                request.getRequestDispatcher("success.jsp").forward(request,response);
+                request.getRequestDispatcher("bsuccess.jsp").forward(request,response);
             }else{
                 //添加失败
                 request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -95,7 +95,7 @@ public class UserClServlet extends HttpServlet {
             if(userbeancl.searchUser(id, username, password).size() > 0){
                 //显示查询结果
                 request.setAttribute("result", userbeancl.searchUser(id, username, password));
-                request.getRequestDispatcher("searchResult.jsp").forward(request,response);
+                request.getRequestDispatcher("bsearchResult.jsp").forward(request,response);
             }else{
                 //查询失败
                 request.getRequestDispatcher("error.jsp").forward(request,response);
@@ -108,7 +108,7 @@ public class UserClServlet extends HttpServlet {
             String password = request.getParameter("password");
             if(userbeancl.cancelUser(username,password)){
                 //注销成功
-                request.getRequestDispatcher("success.jsp").forward(request, response);
+                request.getRequestDispatcher("bsuccess.jsp").forward(request, response);
             }else{
                 //注销失败
                 request.getRequestDispatcher("error.jsp").forward(request, response);

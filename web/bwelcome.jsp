@@ -17,16 +17,9 @@
             return;
         }
     %>
-    登陆成功 欢迎你  <%=u%> !<br>
-    <br>
-    <a href="login.jsp">返回登陆页面</a>
-
-    <br>
-    <a href="umain.jsp">返回主页面</a>
-
     <h1>
-        用户信息列表
-    </h1><br>
+        图书信息表
+    </h1>
     <br>
     <%
         //要显示的数据从request取
@@ -35,10 +28,10 @@
     <table border="1" style="border-collapse:collapse">
         <tr bgcolor="orange">
             <td width="30">ID</td>
-            <td>用户名</td>
-            <td>密码</td>
-            <td><a>修改用户</a></td>
-            <td><a>删除用户</a></td>
+            <td>书名</td>
+            <td>作者</td>
+            <td><a>修改信息</a></td>
+            <td><a>删除图书</a></td>
         </tr>
         <%
             String[] color= {"green", "pink"};
@@ -51,17 +44,20 @@
             <td><%=userbean.getPassword()%></td>
             <td>
                 <center>
-                    <a href="updateUser.jsp?username=<%=userbean.getId() %>&password=<%=userbean.getUsername()%>&id=<%=userbean.getPassword()%>">修改用户</a>
+                    <a href="updateBook.jsp?id=<%=userbean.getId() %>&username=<%=userbean.getUsername() %>&password=<%=userbean.getPassword()%>">修改图书</a>
                 </center>
             </td>
             <td>
                 <center>
-                    <a href="UserClServlet?flag=delete&user_id=<%=userbean.getId()%>">删除</a>
+                    <a href="BookClServlet?flag=delete&user_id=<%=userbean.getId()%>">删除</a>
                 </center>
             </td>
         </tr>
         <%}%>
     </table>
+    <br>
+    <a href="login.jsp">返回登录页</a>
+    <a href="bmain.jsp" >返回管理页</a>
 </center>
 </body>
 </html>

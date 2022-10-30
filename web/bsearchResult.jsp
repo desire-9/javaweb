@@ -14,14 +14,14 @@
     %>
     ID:
     <input type="text" name="id" value="<%=userbean.getId()%>" /><br />
-    用户名：
+    书名：
     <input type="text" name="username" value="<%=userbean.getUsername()%>" /><br />
-    密码：
+    作者：
     <input type="text" name="password" value="<%=userbean.getPassword()%>" /><br />
     <%
         }
     %>
-    <a href="searchUser.jsp"><font color="pink">返回</font></a>
+    <a href="searchBook.jsp"><font color="pink">返回</font></a>
 </center>
 
 </body>

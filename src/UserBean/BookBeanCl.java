@@ -1,15 +1,11 @@
 package UserBean;
 
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 //这是一个处理类，有些人把它叫做BO，主要是封装去对login表的各种操作
 //主要是增、删、修、查......
-public class UserBeanCl {
+public class BookBeanCl {
     private Connection conn = null;
     private Statement stmt = null;
     private ResultSet res = null;
@@ -53,7 +49,7 @@ public class UserBeanCl {
             conn = new ConnDB().getConnection();
             stmt =  conn.createStatement();
             res = stmt
-                    .executeQuery("select password from user where username = '"
+                    .executeQuery("select password from book where username = '"
                             + u + "'");
 
             // 根据结果判断
@@ -115,7 +111,7 @@ public class UserBeanCl {
             // 显示要查询的记录
             // where not in(select * from login limit "+pageSize*(pageNow-1)+")
             System.out.println(pageNow);
-            res = stmt.executeQuery("select * from user limit "
+            res = stmt.executeQuery("select * from book limit "
                     + ((pageNow - 1) * pageSize) + "," + pageSize + "; ");
 
             // 开始将res封装到ArrayList
@@ -142,7 +138,7 @@ public class UserBeanCl {
         boolean bool = false;
         try {
             conn = new ConnDB().getConnection();
-            ps = conn.prepareStatement("delete from user where id = "
+            ps = conn.prepareStatement("delete from book where id = "
                     + user_id + "");
             int a = ps.executeUpdate();
             if (a == 1) {
@@ -163,7 +159,7 @@ public class UserBeanCl {
         try {
             conn = new ConnDB().getConnection();
             ps = conn
-                    .prepareStatement("insert into user(username,password) values('"
+                    .prepareStatement("insert into book(username,password) values('"
                             + username + "','" + password + "')");
             int i = ps.executeUpdate();
             if (i == 1) {
@@ -182,7 +178,7 @@ public class UserBeanCl {
         boolean bool = false;
         try {
             conn = new ConnDB().getConnection();
-            ps = conn.prepareStatement("update user set username='" + username
+            ps = conn.prepareStatement("update book set username='" + username
                     + "',password='" + password + "' where id = '" + id + "'");
             int i = ps.executeUpdate();
             if (i == 1) {
@@ -203,7 +199,7 @@ public class UserBeanCl {
         try {
 
             conn = new ConnDB().getConnection();
-            ps = conn.prepareStatement("select * from user where id like'%" + id
+            ps = conn.prepareStatement("select * from book where id like'%" + id
                     + "%' and username like'%" + username
                     + "%' and password like'%" + password + "%'");
             res = ps.executeQuery();
@@ -226,7 +222,7 @@ public class UserBeanCl {
         boolean bool = false;
         try {
             conn = new ConnDB().getConnection();
-            ps = conn.prepareStatement("delete from user where username = '"+username+"' and password = '"+password+"'");
+            ps = conn.prepareStatement("delete from book where username = '"+username+"' and password = '"+password+"'");
             int i = ps.executeUpdate();
             if(i == 1){
                 bool = true;

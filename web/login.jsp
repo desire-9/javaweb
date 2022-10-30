@@ -17,12 +17,12 @@
     <br>
     <hr>
     <form action="LoginServlet" method="post">
-        <font color="black">用户名：</font>
-        <input type="text" name="username"/> <br/>
-        <font color="black">密码：</font>
-        <input type="password" name="password"/><br/>
-        <input type="submit" value="登陆"/>
-        <input type="reset" value="重置"/><br/>
+            <font color="black">用户名：</font>
+            <input type="text" name="username"/> <br/>
+            <font color="black">密码：</font>
+            <input type="password" name="password"/><br/>
+            <input type="submit" value="登陆"/>
+            <input type="reset" value="重置"/><br/>
     </form>
 </center>
 </body>

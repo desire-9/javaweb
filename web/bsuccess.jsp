@@ -7,7 +7,7 @@
 <center>
 
     <h1>该操作已成功！</h1><br>
-    <a href="umain.jsp">返回主界面</a>
+    <a href="bmain.jsp">返回主界面</a>
 </center>
 </body>
 </html>
